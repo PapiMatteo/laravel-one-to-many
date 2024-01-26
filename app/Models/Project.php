@@ -10,7 +10,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'description', 'cover_image'];
+    protected $fillable = ['title', 'slug', 'description', 'cover_image', 'type_id'];
 
     // Mutator
 
@@ -19,5 +19,9 @@ class Project extends Model
         $this->attributes['title'] = $_title;
         $this->attributes['slug']  = Str::slug($_title);
 
+    }
+
+    public function type(){
+        return $this->belongsTo(Type::class);
     }
 }
