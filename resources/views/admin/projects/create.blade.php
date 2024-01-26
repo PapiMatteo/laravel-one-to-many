@@ -39,6 +39,19 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="mb-3 has-validation">
+                <label for="type">Seleziona tipologia</label>
+                <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type">
+                    <option @selected(!old('type_id')) value="">Nessuna tipologia</option>
+                    @foreach ($types as $type)
+                        <option @selected(old('type_id') == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>   
+                @error('type_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
             
             <button class="btn btn-success" type="submit">Salva</button>
 
